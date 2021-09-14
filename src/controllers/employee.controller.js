@@ -7,6 +7,7 @@ exports.findAll = function (req, res) {
         console.log('controller')
         if (err)
             res.send(err);
+
         console.log('res', employee);
         res.send(employee);
     });

@@ -17,7 +17,7 @@ var Employee = function(employee){
 };
 
 Employee.create = function (newEmp, result) {
-    dbConn.query("INSERT INTO employees set ?", newEmp, function (err, res) {
+    dbConn.query("INSERT INTO regions set ?", newEmp, function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(err, null);
@@ -30,7 +30,7 @@ Employee.create = function (newEmp, result) {
 };
 
 Employee.findById = function (id, result) {
-    dbConn.query("Select * from employees where id = ? ", id, function (err, res) {
+    dbConn.query("Select * from regions where id = ? ", id, function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(err, null);
@@ -42,13 +42,14 @@ Employee.findById = function (id, result) {
 };
 
 Employee.findAll = function (result) {
-    dbConn.query("Select * from employees", function (err, res) {
+    dbConn.query("Select * from regions", function (err, res) {
         if(err) {
             console.log("error: ", err);
+            result(null, 'result');
             result(null, err);
         }
         else{
-            console.log('employees : ', res);
+            console.log('regions : ', res);
             result(null, res);
         }
     });
@@ -56,7 +57,7 @@ Employee.findAll = function (result) {
 
 
 Employee.update = function(id, employee, result){
-    dbConn.query("UPDATE employees SET first_name=?,last_name=?,email=?,phone=?,organization=?,designation=?,salary=? WHERE id = ?", [employee.first_name,employee.last_name,employee.email,employee.phone,employee.organization,employee.designation,employee.salary, id], function (err, res) {
+    dbConn.query("UPDATE regions SET first_name=?,last_name=?,email=?,phone=?,organization=?,designation=?,salary=? WHERE id = ?", [employee.first_name,employee.last_name,employee.email,employee.phone,employee.organization,employee.designation,employee.salary, id], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
@@ -67,7 +68,7 @@ Employee.update = function(id, employee, result){
 };
 
 Employee.delete = function(id, result){
-    dbConn.query("DELETE FROM employees WHERE id = ?", [id], function (err, res) {
+    dbConn.query("DELETE FROM regions WHERE id = ?", [id], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
