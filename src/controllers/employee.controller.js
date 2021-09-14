@@ -2,8 +2,8 @@
 
 const Employee = require('../models/employee.model');
 
-exports.findAll = function (req, res) {
-    Employee.findAll(function (err, employee) {
+exports.findAll = (req, res) => {
+    Employee.findAll((err, employee) => {
         console.log('controller')
         if (err)
             res.send(err);
@@ -14,14 +14,14 @@ exports.findAll = function (req, res) {
 };
 
 
-exports.create = function (req, res) {
+exports.create = (req, res) => {
 
     const new_employee = new Employee(req.body);
     //handles null error
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.status(400).send({error: true, message: 'Please provide all required field'});
     } else {
-        Employee.create(new_employee, function (err, employee) {
+        Employee.create(new_employee, (err, employee) => {
             if (err)
                 res.send(err);
             res.json({error: false, message: "Employee added successfully!", data: employee});
@@ -30,7 +30,7 @@ exports.create = function (req, res) {
 };
 
 
-exports.findById = function (req, res) {
+exports.findById = (req, res) => {
     Employee.findById(req.params.id, function (err, employee) {
         if (err)
             res.send(err);
@@ -39,7 +39,7 @@ exports.findById = function (req, res) {
 };
 
 
-exports.update = function (req, res) {
+exports.update = (req, res) => {
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.status(400).send({error: true, message: 'Please provide all required field'});
     } else {
@@ -52,7 +52,7 @@ exports.update = function (req, res) {
 };
 
 
-exports.delete = function (req, res) {
+exports.delete = (req, res) => {
     Employee.delete(req.params.id, function (err, employee) {
         if (err)
             res.send(err);

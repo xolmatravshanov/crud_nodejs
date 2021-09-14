@@ -3,7 +3,7 @@
 var dbConn = require('../config/db.config');
 
 //Employee object create
-var Employee = function (employee) {
+var Employee = (employee) => {
     this.first_name = employee.first_name;
     this.last_name = employee.last_name;
     this.email = employee.email;
@@ -16,7 +16,7 @@ var Employee = function (employee) {
     this.updated_at = new Date();
 };
 
-Employee.create = function (newEmp, result) {
+Employee.create = (newEmp, result) => {
     dbConn.query("INSERT INTO regions set ?", newEmp, function (err, res) {
         if (err) {
             console.log("error: ", err);
@@ -28,7 +28,7 @@ Employee.create = function (newEmp, result) {
     });
 };
 
-Employee.findById = function (id, result) {
+Employee.findById = (id, result) => {
     dbConn.query("select * from regions where id = ? ", id, function (err, res) {
         if (err) {
             console.log("error: ", err);
@@ -39,7 +39,7 @@ Employee.findById = function (id, result) {
     });
 };
 
-Employee.findAll = function (result) {
+Employee.findAll = (result) => {
     dbConn.query("Select * from regions", function (err, res) {
         if (err) {
             console.log("error: ", err);
@@ -52,7 +52,7 @@ Employee.findAll = function (result) {
 };
 
 
-Employee.update = function (id, employee, result) {
+Employee.update = (id, employee, result) => {
     dbConn.query("UPDATE regions SET first_name=?,last_name=?,email=?,phone=?,organization=?,designation=?,salary=? WHERE id = ?", [employee.first_name, employee.last_name, employee.email, employee.phone, employee.organization, employee.designation, employee.salary, id],
         function (err, res) {
             if (err) {
@@ -64,7 +64,7 @@ Employee.update = function (id, employee, result) {
         });
 };
 
-Employee.delete = function (id, result) {
+Employee.delete = (id, result) => {
     dbConn.query("DELETE FROM regions WHERE id = ?", [id], function (err, res) {
         if (err) {
             console.log("error: ", err);
