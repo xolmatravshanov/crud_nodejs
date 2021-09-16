@@ -22,10 +22,13 @@ app.get('/', (req, res) => {
 
 // Require employee routes
 const employeeRoutes = require('./src/routes/employee.routes')
+const userRoutes = require('./src/routes/user.routes')
 
 const BASE_V1_ENDPOINT = "/api/v1/";
+
 // using as middleware
 app.use(`${BASE_V1_ENDPOINT}employees`, employeeRoutes)
+app.use(`${BASE_V1_ENDPOINT}user`, userRoutes)
 
 // listen for requests
 app.listen(port, () => {

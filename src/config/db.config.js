@@ -1,9 +1,9 @@
 'use strict';
 
-
 const mysql = require('mysql');
 const donenv = require('dotenv');
 donenv.config();
+
 //local mysql db connection
 
 const dbConn = mysql.createConnection({

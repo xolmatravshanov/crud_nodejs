@@ -1,9 +1,9 @@
 'use strict';
 
-const Employee = require('../models/employee.model');
+const User = require('../models/user.model');
 
 exports.findAll = (req, res) => {
-    Employee.findAll((err, employee) => {
+    User.findAll((err, employee) => {
         console.log('controller')
         if (err)
             res.send(err);
@@ -17,22 +17,22 @@ exports.findAll = (req, res) => {
 
 exports.create = (req, res) => {
 
-    const new_employee = new Employee(req.body);
+    const new_employee = new User(req.body);
     //handles null error
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.status(400).send({error: true, message: 'Please provide all required field'});
     } else {
-        Employee.create(new_employee, (err, employee) => {
+        User.create(new_employee, (err, employee) => {
             if (err)
                 res.send(err);
-            res.json({error: false, message: "Employee added successfully!", data: employee});
+            res.json({error: false, message: "User added successfully!", data: employee});
         });
     }
 };
 
 
 exports.findById = (req, res) => {
-    Employee.findById(req.params.id, function (err, employee) {
+    User.findById(req.params.id, function (err, employee) {
 
         if (err)
             res.send(err);
@@ -46,21 +46,21 @@ exports.update = (req, res) => {
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.status(400).send({error: true, message: 'Please provide all required field'});
     } else {
-        Employee.update(req.params.id, new Employee(req.body), function (err, employee) {
+        User.update(req.params.id, new User(req.body), function (err, employee) {
 
             if (err)
                 res.send(err);
 
-            res.json({error: false, message: 'Employee successfully updated'});
+            res.json({error: false, message: 'User successfully updated'});
         });
     }
 };
 
 
 exports.delete = (req, res) => {
-    Employee.delete(req.params.id, function (err, employee) {
+    User.delete(req.params.id, function (err, employee) {
         if (err)
             res.send(err);
-        res.json({error: false, message: 'Employee successfully deleted'});
+        res.json({error: false, message: 'User successfully deleted'});
     });
 };
