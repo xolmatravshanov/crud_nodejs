@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-
+const authMiddleware = require('../middlewares/auth.middleware');
 const employeeController = require('../controllers/employee.controller');
 
 // Retrieve all employees
-router.get('/', employeeController.findAll);
+router.get('/', authMiddleware, employeeController.findAll);
 // Create a new employee
 router.post('/', employeeController.create);
 // Retrieve a single employee with id
